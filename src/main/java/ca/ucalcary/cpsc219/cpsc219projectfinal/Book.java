@@ -10,6 +10,14 @@ public class Book {
     private ReadingStatus status;
     private Date date = new Date();
 
+
+    private String coverImageUrl;
+    private String description;
+    private int pageCount;
+    private String publisher;
+    private String isbn;
+    private double rating;
+
     /**
      * Book constructor
      * @param title - String that is set to be the book's title
@@ -27,7 +35,35 @@ public class Book {
         }
         this.author = author;
         this.status = status;
+
+        this.coverImageUrl = null;
+        this.description = "";
+        this.pageCount = 0;
+        this.publisher = "";
+        this.isbn = "";
+        this.rating = 0.0;
     }
+
+
+    public Book(String title, String series, String author, ReadingStatus status,
+                String coverImageUrl, String description, int pageCount,
+                String publisher, String isbn) {
+        this(title, series, author, status);
+        this.coverImageUrl = coverImageUrl;
+        this.description = description;
+        this.pageCount = pageCount;
+        this.publisher = publisher;
+        this.isbn = isbn;
+    }
+
+
+    public String getCoverImageUrl() { return coverImageUrl; }
+    public String getDescription() { return description; }
+    public int getPageCount() { return pageCount; }
+    public String getPublisher() { return publisher; }
+    public String getIsbn() { return isbn; }
+    public double getRating() { return rating; }
+
 
     /**
      * Returns the book's title
