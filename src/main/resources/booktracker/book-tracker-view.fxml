@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booktracker.BookTrackerController">
+    <top>
+        <VBox>
+            <children>
+                <!-- Top Bar with Search and Actions -->
+                <HBox fx:id="topNode" alignment="CENTER_LEFT" prefHeight="60.0" style="-fx-background-color: white; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 1 0; -fx-padding: 12;" spacing="12.0">
+                    <children>
+                        <!-- Search Field with Icon Effect -->
+                        <TextField fx:id="searchField" prefHeight="40.0" prefWidth="280.0" promptText="🔍 Search books or authors..." style="-fx-background-color: #F5F7FB; -fx-background-radius: 8; -fx-border-color: transparent; -fx-border-radius: 8; -fx-padding: 10; -fx-font-size: 13px;">
+                            <font>
+                                <Font name="Segoe UI" size="13.0" />
+                            </font>
+                        </TextField>
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <!-- Action Buttons -->
+                        <Button fx:id="recommendationBookButton" mnemonicParsing="false" onAction="#onRecommendationBookButton" prefHeight="40.0" style="-fx-background-color: #16425B; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 0 20;" text="📚 Recommendations">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="13.0" />
+                            </font>
+                        </Button>
+
+                        <Button fx:id="authorButton" mnemonicParsing="false" onAction="#onTopAuthorsButton" prefHeight="40.0" style="-fx-background-color: #3A7CA5; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 0 20;" text="⭐ Top Authors">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <!-- Menu Bar -->
+                <MenuBar style="-fx-background-color: white; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 1 0; -fx-padding: 4 8;">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Edit" style="-fx-font-size: 13px;">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onEditAddBookButton" text="➕ Add Book Manually" />
+                                <MenuItem mnemonicParsing="false" onAction="#onAPISearchBookButton" text="🔍 Search Google Books" />
+                                <MenuItem mnemonicParsing="false" onAction="#onEditRemoveAddedBookButton" text="🗑️ Delete Book" />
+                                <MenuItem mnemonicParsing="false" onAction="#onEditMoveBookButton" text="↔️ Move Book" />
+                            </items>
+                        </Menu>
+
+                        <Menu mnemonicParsing="false" text="Milestones" style="-fx-font-size: 13px;">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onSetMilestoneButtonClick" text="🎯 Set Milestone" />
+                                <MenuItem mnemonicParsing="false" onAction="#onViewMilestoneButtonClick" text="👁️ View Milestones" />
+                                <MenuItem mnemonicParsing="false" onAction="#onMilestoneProgressButtonClick" text="📊 See Progress" />
+                                <MenuItem mnemonicParsing="false" onAction="#onAllBooksYearClick" text="📅 Books by Year" />
+                            </items>
+                        </Menu>
+
+                        <Menu mnemonicParsing="false" text="File" style="-fx-font-size: 13px;">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onSaveClick" text="💾 Save" />
+                                <MenuItem mnemonicParsing="false" onAction="#onLoadClick" text="📂 Load" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help" style="-fx-font-size: 13px;">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onAboutClick" text="ℹ️ About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </VBox>
+    </top>
+
+    <left>
+        <VBox fx:id="leftNode" prefHeight="520.0" prefWidth="200.0" spacing="8.0" style="-fx-background-color: white; -fx-border-color: #E0E0E0; -fx-border-width: 0 1 0 0; -fx-padding: 20;" BorderPane.alignment="CENTER">
+            <children>
+                <!-- Sidebar Header -->
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="My Library" style="-fx-fill: #2C3E50; -fx-font-weight: bold;" textAlignment="CENTER" wrappingWidth="160.0">
+                    <font>
+                        <Font name="Segoe UI Bold" size="18.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="16.0" />
+                    </VBox.margin>
+                </Text>
+
+                <!-- Navigation Buttons with Modern Styling -->
+                <Button fx:id="allBooksButton" mnemonicParsing="false" onAction="#onAllBooksButtonClick" prefHeight="44.0" prefWidth="160.0" text="📖 All Books" style="-fx-background-color: #3A7CA5; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-alignment: CENTER-LEFT; -fx-padding: 0 0 0 16;">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="8.0" />
+                    </VBox.margin>
+                </Button>
+
+                <Button fx:id="inProgressButton" mnemonicParsing="false" onAction="#onInProgressButtonClick" prefHeight="44.0" prefWidth="160.0" text="📚 In Progress" style="-fx-background-color: #3A7CA5; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-alignment: CENTER-LEFT; -fx-padding: 0 0 0 16;">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="8.0" />
+                    </VBox.margin>
+                </Button>
+
+                <Button fx:id="toBeReadButton" mnemonicParsing="false" onAction="#onToBeReadButtonClick" prefHeight="44.0" prefWidth="160.0" text="📋 To Be Read" style="-fx-background-color: #3A7CA5; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-alignment: CENTER-LEFT; -fx-padding: 0 0 0 16;">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="8.0" />
+                    </VBox.margin>
+                </Button>
+
+                <Button fx:id="finishedButton" mnemonicParsing="false" onAction="#onFinishedButtonClick" prefHeight="44.0" prefWidth="160.0" text="✓ Finished" style="-fx-background-color: #3A7CA5; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-alignment: CENTER-LEFT; -fx-padding: 0 0 0 16;">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </Button>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- Status Labels at Bottom -->
+                <VBox spacing="8.0" style="-fx-background-color: #F8F9FA; -fx-background-radius: 8; -fx-padding: 12;">
+                    <children>
+                        <Label fx:id="numberOfFinishedBooksLabel" style="-fx-text-fill: #2C3E50; -fx-font-size: 12px; -fx-font-weight: bold;" wrapText="true">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="successLabel" style="-fx-text-fill: #27AE60; -fx-font-size: 11px;" wrapText="true">
+                            <font>
+                                <Font name="Segoe UI" size="11.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <AnchorPane fx:id="centerNode" prefHeight="520.0" prefWidth="700.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER">
+            <children>
+                <!-- Welcome Message -->
+                <VBox alignment="CENTER" layoutX="200.0" layoutY="180.0" spacing="16.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="180.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="📚 Welcome to Book Tracker" textAlignment="CENTER" style="-fx-fill: #2C3E50; -fx-font-weight: bold;">
+                            <font>
+                                <Font name="Segoe UI Bold" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select a category from the sidebar to get started" textAlignment="CENTER" wrappingWidth="400.0" style="-fx-fill: #7F8C8D;">
+                            <font>
+                                <Font name="Segoe UI" size="14.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="💡 Tip: Run with argument 'load' to restore saved data" textAlignment="CENTER" wrappingWidth="450.0" style="-fx-fill: #95A5A6; -fx-font-style: italic;">
+                            <font>
+                                <Font name="Segoe UI Italic" size="12.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
