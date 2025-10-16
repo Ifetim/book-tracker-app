@@ -289,4 +289,143 @@ public class AddBookPopup {
         popupStage.setScene(scene);
         popupStage.showAndWait(); // Wait for popup to close before continuing
     }
+
+    public void showAPISearchPopup(BookTrackerController controller) {
+        Stage popupStage = new Stage();
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.setTitle("Search Google Books");
+
+        // Search field
+        TextField searchField = new TextField();
+        searchField.setPromptText("Enter book title, author, or ISBN");
+        searchField.setPrefWidth(400);
+
+        // Search button
+        Button searchButton = new Button("🔍 Search");
+        searchButton.setStyle("-fx-background-color: #3A7CA5; -fx-text-fill: white;");
+
+        // Results list
+        ListView<GoogleBooksAPI.BookSearchResult> resultsList = new ListView<>();
+        resultsList.setPrefHeight(300);
+        resultsList.setPrefWidth(400);
+
+        // Detail area
+        TextArea detailArea = new TextArea();
+        detailArea.setPrefHeight(150);
+        detailArea.setPrefWidth(400);
+        detailArea.setEditable(false);
+        detailArea.setWrapText(true);
+
+        // Buttons
+        Button importButton = new Button("Import Selected Book");
+        importButton.setDisable(true);
+        importButton.setStyle("-fx-background-color: #27AE60; -fx-text-fill: white;");
+
+        Button cancelButton = new Button("Cancel");
+
+        GoogleBooksAPI api = new GoogleBooksAPI();
+
+        // Search action
+        searchButton.setOnAction(e -> {
+            String query = searchField.getText().trim();
+            if (query.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Empty Search");
+                alert.setContentText("Please enter a search term");
+                alert.showAndWait();
+                return;
+            }
+
+            // Show loading message
+            resultsList.getItems().clear();
+            detailArea.setText("Searching Google Books...");
+
+            // Search in background thread
+            new Thread(() -> {
+                List<GoogleBooksAPI.BookSearchResult> results = api.searchBooks(query);
+
+                // Update UI on JavaFX thread
+                javafx.application.Platform.runLater(() -> {
+                    if (results.isEmpty()) {
+                        detailArea.setText("No results found. Try a different search term.");
+                    } else {
+                        resultsList.getItems().addAll(results);
+                        detailArea.setText("Found " + results.size() + " books. Select one to see details.");
+                    }
+                });
+            }).start();
+        });
+
+        // Selection action
+        resultsList.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                String details = "Title: " + newVal.getTitle() + "\n" +
+                        "Author: " + newVal.getAuthor() + "\n" +
+                        "Publisher: " + newVal.getPublisher() + "\n" +
+                        "Pages: " + (newVal.getPageCount() > 0 ? newVal.getPageCount() : "N/A") + "\n" +
+                        "ISBN: " + (newVal.getIsbn().isEmpty() ? "N/A" : newVal.getIsbn()) + "\n\n" +
+                        "Description:\n" + newVal.getDescription();
+                detailArea.setText(details);
+                importButton.setDisable(false);
+            }
+        });
+
+        // Import action
+        importButton.setOnAction(e -> {
+            GoogleBooksAPI.BookSearchResult selected = resultsList.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                // Create book with API data
+                Book book = new Book(
+                        selected.getTitle(),
+                        "", // Series - user can add later
+                        selected.getAuthor(),
+                        ReadingStatus.TO_BE_READ,
+                        selected.getCoverImageUrl(),
+                        selected.getDescription(),
+                        selected.getPageCount(),
+                        selected.getPublisher(),
+                        selected.getIsbn()
+                );
+
+                // Add to library
+                String result = controller.getLibrary().addBookToTbr(book);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Book Imported");
+                alert.setContentText(result);
+                alert.showAndWait();
+
+                // Refresh view
+                controller.onToBeReadButtonClick();
+                popupStage.close();
+            }
+        });
+
+        cancelButton.setOnAction(e -> popupStage.close());
+
+        // Layout
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20));
+        layout.setAlignment(Pos.CENTER);
+
+        HBox searchBox = new HBox(10, searchField, searchButton);
+        searchBox.setAlignment(Pos.CENTER);
+
+        HBox buttonBox = new HBox(10, importButton, cancelButton);
+        buttonBox.setAlignment(Pos.CENTER);
+
+        layout.getChildren().addAll(
+                new Label("Search for books on Google Books:"),
+                searchBox,
+                new Label("Search Results:"),
+                resultsList,
+                new Label("Book Details:"),
+                detailArea,
+                buttonBox
+        );
+
+        Scene scene = new Scene(layout, 450, 700);
+        popupStage.setScene(scene);
+        popupStage.showAndWait();
+    }
 }
