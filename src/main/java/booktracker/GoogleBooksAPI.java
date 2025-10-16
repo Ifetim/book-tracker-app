@@ -1,4 +1,4 @@
-package ca.ucalcary.cpsc219.cpsc219projectfinal;
+package booktracker;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

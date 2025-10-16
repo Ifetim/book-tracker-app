@@ -1,4 +1,4 @@
-package ca.ucalcary.cpsc219.cpsc219projectfinal;
+package booktracker;
 
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;

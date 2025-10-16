@@ -75,7 +75,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                ca.ucalcary.cpsc219.cpsc219projectfinal/ca.ucalcary.cpsc219.cpsc219projectfinal.BookTrackerApplication
+                                ca.ucalcary.cpsc219.cpsc219projectfinal/booktracker.BookTrackerApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

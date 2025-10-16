@@ -1,23 +1,18 @@
 // URL For git:  https://csgit.ucalgary.ca/amelia.custodio/cpsc219project
 // Amelia Custodio, Sarah Giesbrecht, Gray Wilson, Jessie Estrada, Ife Timothy / April 24, 2025 / T10
 
-package ca.ucalcary.cpsc219.cpsc219projectfinal;
+package booktracker;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * Gets command line arguments, launches stage, code asking to save when the user clicks the "x" button

@@ -1,4 +1,4 @@
-package ca.ucalcary.cpsc219.cpsc219projectfinal;
+package booktracker;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

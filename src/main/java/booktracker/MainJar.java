@@ -1,4 +1,4 @@
-package ca.ucalcary.cpsc219.cpsc219projectfinal;
+package booktracker;
 
 public class MainJar {
     public static void main(String[] args) {
