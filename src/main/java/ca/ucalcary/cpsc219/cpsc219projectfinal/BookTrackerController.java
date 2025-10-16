@@ -1551,4 +1551,38 @@ public class BookTrackerController implements Initializable{
     public HashSet<Integer> getGoalsList() {
         return goalsList;
     }
+
+    public void saveThenExit() {
+        // Create a temporary file saver with default location
+        Path dataPath = new File("data").toPath();
+        Path filePath = dataPath.resolve("SavedData.txt");
+        File fileSave = filePath.toFile();
+
+        FileSaver fileSaver = new FileSaver(fileSave);
+        fileSaver.setController(this);
+        boolean wasSaveSuccessful = fileSaver.save();
+
+        if (wasSaveSuccessful) {
+            System.out.println("Data saved successfully");
+        } else {
+            System.out.println("Error saving data");
+        }
+
+        // Exit after save attempt
+        System.exit(0);
+    }
+
+    /**
+     * Exits the application without saving
+     * Called when user clicks "Exit" in the exit confirmation dialog
+     */
+    public void exitWithoutSaving() {
+        System.exit(0);
+    }
+
+    @FXML
+    public void onAPISearchBookButton() {
+        popup.showAPISearchPopup(this);
+    }
+
 }
