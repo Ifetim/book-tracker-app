@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CPSC219ProjectFinal:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CPSC219ProjectFinal_jar</output-path>
+    <root id="archive" name="CPSC219ProjectFinal.jar">
+      <element id="module-output" name="CPSC219ProjectFinal" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/23.0.2/javafx-graphics-23.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/23.0.2/javafx-base-23.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/23.0.2/javafx-controls-23.0.2-mac-aarch64.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/23.0.2/javafx-base-23.0.2-mac-aarch64.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/23.0.2/javafx-graphics-23.0.2-mac-aarch64.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/23.0.2/javafx-fxml-23.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/23.0.2/javafx-fxml-23.0.2-mac-aarch64.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/23.0.2/javafx-controls-23.0.2.jar" path-in-jar="/" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/javafx-sdk-24/src.zip" />
+    </root>
+  </artifact>
+</component>
