@@ -1,5 +1,7 @@
-// URL For git:  https://csgit.ucalgary.ca/amelia.custodio/cpsc219project
-// Amelia Custodio, Sarah Giesbrecht, Gray Wilson, Jessie Estrada, Ife Timothy / April 24, 2025 / T10
+/**
+ * Book Tracker Application
+ * Desktop application for managing personal book collections
+ * **/
 
 package booktracker;
 
@@ -25,7 +27,7 @@ public class BookTrackerApplication extends Application {
         // Loads the fxml
         FXMLLoader fxmlLoader = new FXMLLoader(BookTrackerApplication.class.getResource("book-tracker-view.fxml"));
         // Creates the scene
-        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 500);
         BookTrackerController controller = fxmlLoader.getController();
         // Adds the command line arguments to the controller
         controller.commandLineData(args);
