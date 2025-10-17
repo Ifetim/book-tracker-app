@@ -182,33 +182,13 @@ public class GoogleBooksAPI {
         }
 
         // Getters
-        public String getTitle() {
-            return title;
-        }
-
-        public String getAuthor() {
-            return author;
-        }
-
-        public String getPublisher() {
-            return publisher;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public int getPageCount() {
-            return pageCount;
-        }
-
-        public String getIsbn() {
-            return isbn;
-        }
-
-        public String getCoverImageUrl() {
-            return coverImageUrl;
-        }
+        public String getTitle() { return title; }
+        public String getAuthor() { return author; }
+        public String getPublisher() { return publisher; }
+        public String getDescription() { return description; }
+        public int getPageCount() { return pageCount; }
+        public String getIsbn() { return isbn; }
+        public String getCoverImageUrl() { return coverImageUrl; }
 
         @Override
         public String toString() {
