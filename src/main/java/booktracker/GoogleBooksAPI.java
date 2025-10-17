@@ -16,9 +16,8 @@ import java.util.List;
 
 public class GoogleBooksAPI {
 
-    private static final String API_BASE_URL = "https://ww.googleapis.com/books/v1/volumes";
-
-    private static final String API_KEY = "";
+    private static final String API_BASE_URL = "https://www.googleapis.com/books/v1/volumes";
+    private static final String API_KEY = "YOUR_API_KEY_HERE"; // Optional: Add your API key
     private final OkHttpClient client;
 
     public GoogleBooksAPI() {
