@@ -70,10 +70,6 @@ A JavaFX desktop application for managing personal book collections with Google 
    java --module-path "C:\path\to\javafx-sdk-23.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar book-tracker-app-1.0.0-shaded.jar
 ```
 
-4. **Load saved data (optional):**
-```bash
-   java --module-path "..." --add-modules javafx.controls,javafx.fxml -jar book-tracker-app-1.0.0-shaded.jar load
-```
 
 
 ## 📖 How to Use
